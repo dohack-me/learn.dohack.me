@@ -1,0 +1,42 @@
+---
+title: Setting up Tooling
+---
+
+import {LinkCard} from "@astrojs/starlight/components"
+
+We will need several tools before we begin. Here's how to install them:
+
+## Quick Installation
+Want to download everything you need at once? Run this in your terminal:
+```bash
+curl -qsL 'https://install.pwndbg.re' | sh -s -- -t pwndbg-gdb && \
+sudo curl -L https://github.com/io12/pwninit/releases/download/3.3.1/pwninit -o /usr/local/bin/pwninit && sudo chmod +x /usr/local/bin/pwninit && \
+pip install pwntools --break-system-packages
+```
+
+Finished installing? Let's begin at the first tutorial!
+
+<LinkCard title="Tutorial 1" href="/pwn/tutorials/tutorial-1" />
+
+## Custom Installation
+Here are all the tools you will need to begin.
+
+### [pwndbg](https://github.com/io12/pwninit)
+Run the following in your terminal:
+```bash
+curl -qsL 'https://install.pwndbg.re' | sh -s -- -t pwndbg-gdb
+```
+
+### [pwninit](https://github.com/io12/pwninit)
+Run the following in your terminal:
+```bash
+sudo curl -L https://github.com/io12/pwninit/releases/download/3.3.1/pwninit -o /usr/local/bin/pwninit && sudo chmod +x /usr/local/bin/pwninit
+```
+
+### [pwntools](https://pypi.org/project/pwntools/)
+Run the following in your terminal:
+```bash
+pip install pwntools --break-system-packages
+```
+
+
