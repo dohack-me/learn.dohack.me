@@ -1,0 +1,20 @@
+---
+title: How to solve a ROP challenge
+---
+This guide shows you how to solve a ROP challenge.
+
+## Identify available gadgets
+The available gadgets in a program usually determines what subcategory of ROP attack you might need to use.
+
+Check for gadgets using `ROPgadget --binary ./vuln | grep "<register>"`
+- If there are no easy-to-use `$rax` or `syscall` gadgets, ROP attacks may not be the correct type of attack.
+- If there are no easy-to-use `$rdi`, `$rsi` and `$rdx` gadgets, visit the following guides for a more advanced ROP attack.
+    - (insert guide here)
+
+## Locating `/bin/sh`
+It is possible that `/bin/sh` may already exist as a string in your program. Run `strings ./vuln | grep "/bin/sh"` to check.
+
+If such string exists, skip to ...
+
+## Setting up `/bin/sh` addition
+...
