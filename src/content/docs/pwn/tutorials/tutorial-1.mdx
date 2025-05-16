@@ -1,3 +1,39 @@
 ---
 title: Tutorial 1
 ---
+
+import { Aside } from '@astrojs/starlight/components';
+
+Welcome to the first tutorial. In this tutorial, we will go through solving Pwn's easiest category, Buffer Overflows.
+
+To begin, let's download the program we will be hacking in this tutorial.
+
+(file)
+
+Now, let's run the program. Open up a terminal and run the following command.
+```bash
+./tutorial-1
+```
+
+<Aside type="tip">
+    Getting this error in your terminal?
+
+    ```bash
+    zsh: permission denied: ./tutorial-1
+    ```
+
+    This is due to your file having insufficient permissions. (add reference here) To fix this, run the following command:
+    ```bash
+    chmod +x tutorial-1
+    ```
+
+    Afterward, try running the program again.
+</Aside>
+
+You should see the following appear:
+```
+Welcome to Tutorial 1! If you're seeing this, this means you have successfully ran the program.
+Press enter to continue..
+```
+
+It means that you have successfully run the program. Now, let's get started hacking this program.
