@@ -48,10 +48,12 @@ Here is a snippet of the source code for task 1. Let's take a look at the first 
 
 <Code code={task1} mark={2} lang="c" title={"task-1.c"}/>
 
-In C, there are no string classes. Instead, strings are represented as an array of characters. These arrays are also called buffers.
+<Aside type="note">
+    In C, there are no string classes. Instead, strings are represented as an array of characters. These arrays are also called buffers.
 
-Notice that the array `hackme` has a length of 11, even though `"helloworld"` is 10 characters long.
-This is because strings have an additional character at the end, called the `NULL` character. (insert explaination)
+    Notice that the array `hackme` has a length of 11, even though `"helloworld"` is 10 characters long.
+    This is because strings have an additional character at the end, called the `NULL` character. (insert explaination)
+</Aside>
 
 Try changing `hackme` to `"hacked"`.
 
