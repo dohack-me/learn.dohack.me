@@ -4,18 +4,19 @@ description: Buffer Overflows
 ---
 
 
-import {Aside, Code, LinkCard} from '@astrojs/starlight/components';
-import task1 from '/src/assets/pwn/tutorials/tutorial-1/task-1.c?raw';
-import task2 from '/src/assets/pwn/tutorials/tutorial-1/task-2.c?raw';
+import {Aside, Code, LinkCard} from "@astrojs/starlight/components";
+import tutorial1 from "/src/assets/pwn/tutorials/tutorial-1/tutorial-1?url";
+import task1 from "/src/assets/pwn/tutorials/tutorial-1/task-1.c?raw";
+import task2 from "/src/assets/pwn/tutorials/tutorial-1/task-2.c?raw";
 
-Welcome to the first tutorial. In this tutorial, we will go through solving Pwn's easiest category, Buffer Overflows.
+Welcome to the first tutorial. In this tutorial, we will go through solving Pwn"s easiest category, Buffer Overflows.
 
 ## Beginning
-To begin, let's download the program we will be hacking in this tutorial.
+To begin, let"s download the program we will be hacking in this tutorial.
 
-(file)
+<LinkCard title="tutorial-1" href={tutorial1} description={"Program for Tutorial 1"}/>
 
-Now, let's run the program. Open up a terminal and run the following command.
+Now, let"s run the program. Open up a terminal and run the following command.
 ```bash
 ./tutorial-1
 ```
@@ -37,14 +38,14 @@ Now, let's run the program. Open up a terminal and run the following command.
 
 You should see the following appear:
 ```
-Welcome to Tutorial 1! If you're seeing this, this means you have successfully ran the program.
+Welcome to Tutorial 1! If you"re seeing this, this means you have successfully ran the program.
 Press enter to continue..
 ```
 
-It means that you have successfully run the program. Now, let's get started hacking this program.
+It means that you have successfully run the program. Now, let"s get started hacking this program.
 
 ## Task 1
-Here is a snippet of the source code for task 1. Let's take a look at the first line of code.
+Here is a snippet of the source code for task 1. Let"s take a look at the first line of code.
 
 <Code code={task1} mark={2} lang="c" title={"task-1.c"}/>
 
@@ -57,7 +58,7 @@ Here is a snippet of the source code for task 1. Let's take a look at the first 
 
 Try changing `hackme` to `"hacked"`.
 
-You may notice that `hackme` wasn't completely changed! The ending part of `"helloworld"` will still be present.
+You may notice that `hackme` wasn"t completely changed! The ending part of `"helloworld"` will still be present.
 Simply put, the `"hacked"` string you sent (including the `NULL` character) only replaced what it needed to, and the other characters remain untouched.
 
 Get used to this "scuffed" nature of programs. When dealing with low-level code and programs, it is helpful to think in bytes, not in higher level objects like strings.
@@ -68,13 +69,13 @@ Here is the snippet for task 2.
 
 <Code code={task2} lang="c" title={"task-2.c"}/>
 
-We've seen what happens if you enter too little characters, but what happens if you enter too much?
+We"ve seen what happens if you enter too little characters, but what happens if you enter too much?
 
 Try changing `changeme` to `"pwnedlol"`.
 
 <details>
     <summary>Possible answer (Click to reveal)</summary>
-    Note that this is not the only answer! The `"A"`'s can be replaced with anything, as long as there is 7 characters
+    Note that this is not the only answer! The `"A"`"s can be replaced with anything, as long as there is 7 characters
     exactly.
 
     `AAAAAAApwnedlol`
