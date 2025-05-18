@@ -7,9 +7,9 @@ export default defineConfig({
 	site: 'https://phosphor.diffusehyperion.com',
 	integrations: [
 		starlight({
-			title: "My Docs",
+			title: "Phosphor",
 			social: {
-				github: "https://github.com/withastro/starlight",
+				github: "https://github.com/diffusehyperion/phosphor",
 			},
 			sidebar: [
 				{

@@ -3,28 +3,30 @@ title: Welcome to Phosphor
 description: A CTF crash course, done differently
 template: splash
 hero:
-  tagline: A CTF crash course, done differently.
+tagline: A CTF crash course, done differently
   actions:
     - text: Get Started
       link: /introduction
       icon: right-arrow
 ---
 
-import { Card, CardGrid } from '@astrojs/starlight/components';
 
-## Next steps
+import {Card, CardGrid} from '@astrojs/starlight/components';
 
 <CardGrid>
 	<Card title="What is this?" icon="information">
 		Phosphor is a comprehensive guide to teach beginner and intermediate CTF players to prepare them for their first CTF.
 	</Card>
-	<Card title="Whats so different?" icon="add-document">
-		Add Markdown or MDX files to `src/content/docs` to create new pages.
+    <Card title="Whats so different?" icon="document">
+        Alongside hands-on learning, we believe theoretical learning greatly helps too. We combine both types to be a
+        comprehensive guide to suit all users.
 	</Card>
-	<Card title="Credits" icon="setting">
-		Edit your `sidebar` and other config in `astro.config.mjs`.
+    <Card title="What else?" icon="list-format">
+        In a rush? Phosphor also provides how-to guides for different topics. It is the "cheat sheet" of CTFs you wish
+        you had!
 	</Card>
-	<Card title="Notes" icon="open-book">
-		Learn more in [the Starlight Docs](https://starlight.astro.build/).
+    <Card title="Also check out:" icon="rocket">
+        Check out our main project, [dohack.me](https://dohack.me)! It is the perfect place to apply what you have
+        learnt here!
 	</Card>
 </CardGrid>
