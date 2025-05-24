@@ -2,7 +2,7 @@
 title: Call Stack
 ---
 import {Code} from "@astrojs/starlight/components";
-import stack_frames from "/src/assets/pwn/explanations/stack/stack_frames.c?raw";
+import stack_frames from "/src/assets/pwn/explanations/stack/stack-frames-1.c?raw";
 
 The call stack is a region in the RAM that stores "stack frames".
 
@@ -11,23 +11,37 @@ This is also known as Last In First Out (LIFO).
 
 When functions are called, new "stack frames" are inserted into the stack.
 
+As elements are added into the call stack, the stack "grows" towards lower addresses.
+The newest element has the lowest address.
+
+The stack "starting address" is determined by the compiler.
+
+![](/src/assets/pwn/explanations/stack/call_stack.png)
+
+Usually, addresses of elements in the stack are referred to by its relative to something.
+In this case, `X` refers to the "starting address" of the stack.
+
 ## Stack frames
-A stack frame stores data about active function calls, including:
-- Parameters of called function
-- Local variable data
-- Return address
+A stack frame is like a "section" in the call stack that stores data about active function calls.
+
+When a function is called, a new stack frame that "belongs" to the function, is added into the stack.
+When the function returns (that is, it finishes), the stack frame is removed.
+
+The stack frame contains the following items in this order:
+1. Function Arguments
+2. Function Return Address
     - Where the program should jump to at the end of the function.
     - Typically, this would be a pointer to a function.
+3. Function Base Pointer
+4. Local Variables
 
 The data is stored in hexadecimal, in 4 or 8 bit long bytes, for 32-bit and 64-bit programs respectively.
 
-## Layout
-
-A stack frame has this layout:
-1. ...
-
+### Example
 For example, consider the following source code:
 
-<Code code={stack_frames} lang="c" title={"stack-frames.c"}/>
+<Code code={stack_frames} lang="c" title={"stack-frames-1.c"}/>
 
+This would be how the call stack changes as the program executes.
 
+![](/src/assets/pwn/explanations/stack/stack-frames-1.png)
