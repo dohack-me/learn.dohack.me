@@ -82,7 +82,7 @@ Try changing `changeme` to `"pwnedlol"`.
 Notice that even though the code only intended for you to change `"hackme"`, as highlighted here:
 <Code code={task2} mark={10} lang="c" title={"task-2.c"}/>
 
-You managed to change `"changeme"` anyway, since it was "next to" `"hackme"` in the stack. (explanation here)
+You managed to change `"changeme"` anyway, since it was "next to" `"hackme"` in the program's memory, known as the [call stack](/pwn/explanations/stack).
 
 These types of exploits are called **"Buffer Overflows"**. They are the very foundation for most attacks later on.
 

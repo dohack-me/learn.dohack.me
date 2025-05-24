@@ -1,0 +1,33 @@
+---
+title: Call Stack
+---
+import {Code} from "@astrojs/starlight/components";
+import stack_frames from "/src/assets/pwn/explanations/stack/stack_frames.c?raw";
+
+The call stack is a region in the RAM that stores "stack frames".
+
+The call stack operates the same as a regular stack: The last element inserted is the first one popped.
+This is also known as Last In First Out (LIFO).
+
+When functions are called, new "stack frames" are inserted into the stack.
+
+## Stack frames
+A stack frame stores data about active function calls, including:
+- Parameters of called function
+- Local variable data
+- Return address
+    - Where the program should jump to at the end of the function.
+    - Typically, this would be a pointer to a function.
+
+The data is stored in hexadecimal, in 4 or 8 bit long bytes, for 32-bit and 64-bit programs respectively.
+
+## Layout
+
+A stack frame has this layout:
+1. ...
+
+For example, consider the following source code:
+
+<Code code={stack_frames} lang="c" title={"stack-frames.c"}/>
+
+
