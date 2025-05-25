@@ -1,0 +1,17 @@
+---
+title: Virtual Address Space
+---
+Virtual Address Space (VAS) is the range of addresses the operating systems makes available to a running program.
+
+As the word "virtual" suggests, the addresses provided to the program is not the actual addresses in the RAM.
+Instead, each virtual address is mapped to an actual address in the RAM.
+
+Addresses referring to the VAS are called **"virtual addresses"**.
+Addresses referring to the RAM are called **"physical addresses"**.
+
+The mapping between virtual addresses and physical addresses are stored in a table called the **"page table"** within the RAM.
+
+The operating system is responsible for creating, maintaining and destroying page tables.
+
+A VAS may not map to consecutive real addresses in the RAM.
+That is to say, two consecutive addresses in the VAS may map to consecutive addresses in the RAM.

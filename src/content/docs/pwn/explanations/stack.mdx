@@ -24,7 +24,7 @@ In this case, `X` refers to the "starting address" of the stack.
 ## Stack frames
 A stack frame is like a "section" in the call stack that stores data about active function calls.
 
-When a function is called, a new stack frame that "belongs" to the function, is added into the stack.
+When a function is called, the function's stack frame is added into the stack.
 When the function returns (that is, it finishes), the stack frame is removed.
 
 The stack frame contains the following items in this order:
@@ -45,3 +45,6 @@ For example, consider the following source code:
 This would be how the call stack changes as the program executes.
 
 ![](/src/assets/pwn/explanations/stack/stack-frames-1.png)
+
+When `func1()` was called, its stack frame was added into the call stack.
+When `func1()` returned, its stack frame was removed.
