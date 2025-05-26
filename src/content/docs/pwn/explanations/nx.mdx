@@ -1,7 +1,20 @@
 ---
 title: NX Bit
 ---
-NX Bit, (no-execute bit) is a CPU feature that properly separates program instructions and user data in the program's address space.
+import {LinkCard} from "@astrojs/starlight/components";
+
+NX Bit, (no-execute bit) is a CPU feature that properly separates program instructions and user data in the program's address space,
+the section of RAM allocated to the program.
 
 Operating systems that support the NX Bit will also mark the user data "region" as non-executable,
 preventing the CPU from executing any instructions within the user data "region".
+
+## Bypasses
+There is no way to negate the protections that the NX Bit provides.
+
+Instead, we should work around it by getting the program to run instructions already within the program.
+These attacks are called return oriented programing (ROP) attacks.
+
+(rop explanation)
+
+<LinkCard title="Return Oriented Programming (ROP)" href="/pwn/guides/rop/" description="Guide to ROP attacks"/>

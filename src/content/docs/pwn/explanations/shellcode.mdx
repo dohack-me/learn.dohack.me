@@ -4,29 +4,27 @@ title: Shellcode
 import {Code, LinkCard} from "@astrojs/starlight/components";
 import shellcode from "/src/assets/pwn/explanations/shellcode/shellcode.c?raw";
 
-Shellcode is assembly instructions in hexadecimal bytes form, usually to spawn a shell to control the machine.
+Shellcode is C code as assembly instructions in hexadecimal bytes form, usually to spawn a shell to control the machine.
 
 Shellcode is useful when your program runs buffers you control as a function.
 
-The reason why shellcode can work is because there is no separation between program instructions and user data within programs.
+The reason why shellcode can work is that there is no separation between program instructions and user data within programs.
 As long as user data can be interpreted as instructions to the CPU, it can be run.
 
 ## Example
 Let's take a look at the following source code:
 <Code code={shellcode} lang="c" title={"shellcode.c"}/>
 
-We can see that the code reads user input and writes it to `buf`, before running `((void (*)())buf)()`.
-Let's break this line down:
+The code writes user input into `buf`, before running `((void (*)())buf)()`.
+Breaking this line down:
 1. `(void (*)())` means a pointer to function that takes no argument and returns void.
 2. `((void (*)())buf)` means we're casting `buf` into said pointer.
-3. `((void (*)())buf)()` means we're running `buf` which was casted to a pointer to a function, which would run the function.
+3. `((void (*)())buf)()` means we're running `buf` which was cast to a pointer to a function, which would run the function.
 
 Therefore, this line would run whatever code is in `buf`.
+Setting `buf` to `execve("/bin/sh")` as assembly instructions as hexadecimal bytes will cause `execve("/bin/sh")` to run, spawning a shell.
 
-This is where shellcode would come in.
-We will set `buf` to the hex bytes you would get when you convert `execve("/bin/sh")` to assembly to hex bytes.
-
-You can find shellcode samples online. Pwntools also provides shellcode samples via `asm(shellcraft.sh())`.
+You can find shellcode samples online. pwntools also provides shellcode samples via `asm(shellcraft.sh())`.
 
 Here's an example solve script for the challenge:
 ```python
