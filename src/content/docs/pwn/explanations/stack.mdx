@@ -2,7 +2,10 @@
 title: Call Stack
 ---
 import {Code} from "@astrojs/starlight/components";
+import {Image} from "astro:assets";
+import call_stack from "/src/assets/pwn/explanations/stack/call_stack.png";
 import stack_frames from "/src/assets/pwn/explanations/stack/stack-frames-1.c?raw";
+import stack_frames_image from "/src/assets/pwn/explanations/stack/stack-frames-1.png";
 
 The call stack is a region in the RAM that stores "stack frames".
 
@@ -16,7 +19,7 @@ The newest element has the lowest address.
 
 The stack "starting address" is determined by the compiler.
 
-![](/src/assets/pwn/explanations/stack/call_stack.png)
+<Image src={call_stack} alt={"A diagram visualizing how a call stack looks like"} />
 
 Usually, addresses of elements in the stack are referred to by its relative to something.
 In this case, `X` refers to the "starting address" of the stack.
@@ -44,7 +47,7 @@ For example, consider the following source code:
 
 This would be how the call stack changes as the program executes.
 
-![](/src/assets/pwn/explanations/stack/stack-frames-1.png)
+<Image src={stack_frames_image} alt={"A diagram visualizing how the call stack evolves with stack frames being added and removed over time"} />
 
 When `func1()` was called, its stack frame was added into the call stack.
 When `func1()` returned, its stack frame was removed.

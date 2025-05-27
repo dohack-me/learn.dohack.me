@@ -2,6 +2,8 @@
 title: How to solve a ROP challenge
 ---
 import {LinkCard} from "@astrojs/starlight/components";
+import {Image} from "astro:assets";
+import vmmap from "/src/assets/pwn/guides/rop/vmmap.png"
 
 This guide shows you how to solve a ROP challenge.
 
@@ -29,7 +31,7 @@ To begin, first find some empty space within the program's address space.
 5. View the data region with `x/<number of bytes>x <address>` to view some amount of bytes from the target address onwards, inclusive of the target address.
 6. Note down the address you want to add `/bin/sh` into. It should be empty `0x00000000` such that you would not interfere with the program.
 
-![](/src/assets/pwn/guides/rop/vmmap.png)
+<Image src={vmmap} alt={"Screenshot showing the output of 'vmmap' and viewing the data region of a program"}/>
 
 ## Identify "mov" gadget
 Afterward, identify a `mov` gadget that you will use.
