@@ -19,9 +19,15 @@ Here's rough guideline for checking whether an architecture is 32-bit or 64-bit:
 - Search online if you're unsure.
 
 ## Generate cyclic pattern
-Generate a cyclic pattern with `cyclic`.
-- If the program is 32-bit, run `cyclic <length>`
-- If the program is 64-bit, run `cyclic -n 8 <length>`
+If the program is 32-bit, run:
+```shell
+cyclic <length>
+```
+
+If the program is 64-bit, run:
+```shell
+cyclic -n 8 <length>
+````
 
 The length determines how long the cyclic pattern string will be. It's best to generate an unnecessarily long string, like `500`.
 
@@ -35,8 +41,16 @@ Run the program. When the program unsafely asks for your input, enter in your cy
 
 ## Calculate offset
 Feed the return address back into `cyclic` to calculate the offset.
-- If the program is 32-bit, run `cyclic -l <address>`
-- If the program is 64-bit, run `cyclic -n 8 -l <address>`
+
+If the program is 32-bit, run:
+```shell
+cyclic -l <address>
+```
+
+If the program is 64-bit, run:
+```shell
+cyclic -n 8 -l <address>
+````
 
 If successful, it will output the offset:
 ```

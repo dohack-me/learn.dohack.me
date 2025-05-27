@@ -1,6 +1,7 @@
 ---
 title: How to add BINSH for ROP attacks
 ---
+
 import {Image} from "astro:assets";
 import vmmap from "/src/assets/pwn/guides/rop/vmmap.png"
 
@@ -9,14 +10,24 @@ This guide shows you how to find or add a `/bin/sh` string to a program during e
 This is useful to perform ROP attacks.
 
 ## Locating `/bin/sh`
-It is possible that `/bin/sh` may already exist as a string in your program. Run `strings -tx ./vuln | grep "/bin/sh"` to check.
-
-If such string exists, it will output the address of the string:
-```
-XXXXXXXX /bin/sh
+It is possible that `/bin/sh` may already exist as a string in your program. Run this command to check:
+```shell
+strings -tx ./vuln | grep "/bin/sh"
 ```
 
-You can then simply use this address for your payload.
+If there is already an instance of `/bin/sh`, it will output the offset of the string's address:
+```
+XXXX /bin/sh
+```
+
+You will then need to add the given offset with the program's base address. If no other protections are enabled (namely PIE), the base address will be `0x400000`.
+
+For example, if given this output on a non-PIE program:
+```
+    8d4 /bin/sh
+```
+
+`/bin/sh` will be found at `0x4008d4`, as `0x400000` + `0x8d4` = `0x4008d4`.
 
 If no strings exist, continue reading to add your own string.
 
@@ -43,7 +54,7 @@ Note down the address of the `mov` gadget you will use.
 ## Build payload
 You will need to do the following in your payload in no particular order:
 1. Set the register that should hold the value to the value
-    - Ensure that the `/bin/sh` string contains the null byte like a string should have.
+ - Ensure that the `/bin/sh` string contains the null byte like a string should have.
 2. Set the register that should hold the address to the address
 
 Finally, call the `mov` gadget via the address you noted down. Here is an example payload:

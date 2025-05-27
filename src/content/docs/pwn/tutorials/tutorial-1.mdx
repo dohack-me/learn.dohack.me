@@ -2,6 +2,7 @@
 title: Tutorial 1
 description: Buffer Overflows
 ---
+
 import {Aside, Code, LinkCard} from "@astrojs/starlight/components";
 import tutorial1 from "/src/assets/pwn/tutorials/tutorial-1/tutorial-1?url";
 import task1 from "/src/assets/pwn/tutorials/tutorial-1/task-1.c?raw";
@@ -26,7 +27,8 @@ Now, let's run the program. Open up a terminal and run the following command.
     zsh: permission denied: ./tutorial-1
     ```
 
-    This is due to your file having insufficient permissions. (add reference here) To fix this, run the following command:
+    This is due to your file having insufficient permissions. (add reference here) To fix this, run the following
+    command:
     ```bash
     chmod +x tutorial-1
     ```
@@ -48,7 +50,9 @@ Here is a snippet of the source code for task 1. Let's take a look at the first 
 <Code code={task1} mark={2} lang="c" title={"task-1.c"}/>
 
 <Aside type="note">
-    In C, there are no string classes. Instead, strings are represented as an array of characters. These arrays are also called buffers.
+    In C, there are no string classes. Instead, strings are represented as an array of characters.
+
+    Arrays that are replaced with user input, like `hackme`, are commonly called "buffers".
 
     Notice that the array `hackme` has a length of 11, even though `"helloworld"` is 10 characters long.
     This is because strings have an additional character at the end, called the `NULL` character. (insert explaination)
@@ -58,8 +62,6 @@ Try changing `hackme` to `"hacked"`.
 
 You may notice that `hackme` wasn't completely changed! The ending part of `"helloworld"` will still be present.
 Simply put, the `"hacked"` string you sent (including the `NULL` character) only replaced what it needed to, and the other characters remain untouched.
-
-Get used to this "scuffed" nature of programs. When dealing with low-level code and programs, it is helpful to think in bytes, not in higher level objects like strings.
 
 ## Task 2
 

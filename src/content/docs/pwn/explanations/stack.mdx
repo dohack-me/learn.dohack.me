@@ -1,6 +1,7 @@
 ---
 title: Call Stack
 ---
+
 import {Code} from "@astrojs/starlight/components";
 import {Image} from "astro:assets";
 import call_stack from "/src/assets/pwn/explanations/stack/call_stack.png";
@@ -19,7 +20,7 @@ The newest element has the lowest address.
 
 The stack "starting address" is determined by the compiler.
 
-<Image src={call_stack} alt={"A diagram visualizing how a call stack looks like"} />
+<Image src={call_stack} alt={"A diagram visualizing how a call stack looks like"}/>
 
 Usually, addresses of elements in the stack are referred to by its relative to something.
 In this case, `X` refers to the "starting address" of the stack.
@@ -33,8 +34,8 @@ When the function returns (that is, it finishes), the stack frame is removed.
 The stack frame contains the following items in this order:
 1. Function Arguments
 2. Function Return Address
-    - Where the program should jump to at the end of the function.
-    - Typically, this would be a pointer to a function.
+ - Where the program should jump to at the end of the function.
+ - Typically, this would be a pointer to a function.
 3. Function Base Pointer
 4. Local Variables
 
@@ -47,7 +48,8 @@ For example, consider the following source code:
 
 This would be how the call stack changes as the program executes.
 
-<Image src={stack_frames_image} alt={"A diagram visualizing how the call stack evolves with stack frames being added and removed over time"} />
+<Image src={stack_frames_image}
+       alt={"A diagram visualizing how the call stack evolves with stack frames being added and removed over time"}/>
 
 When `func1()` was called, its stack frame was added into the call stack.
 When `func1()` returned, its stack frame was removed.

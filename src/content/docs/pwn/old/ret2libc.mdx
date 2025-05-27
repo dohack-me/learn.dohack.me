@@ -22,7 +22,7 @@ Achieve this by having this ROP chain:
 - `exe.got["puts"]`
 - `exe.plt["puts"]`
 - `exe.sym["main"]`
-    - Or any another appropriate function. You need the program to continue running after you have leaked the address.
+  - Or any another appropriate function. You need the program to continue running after you have leaked the address.
 
 Then, get the address of `libc.puts()` and set libc's base address with:
 
@@ -40,5 +40,5 @@ Achieve this by having this ROP chain:
 - `pop_rdi gadget`
 - `next(libc.search(b"/bin/sh"))`
 - `ret gadget`
-    - something something stack alignment error. basically, have this in 64 bit binaries or program will crash lol
+  - something something stack alignment error. basically, have this in 64 bit binaries or program will crash lol
 - `libc.sym["system"]`

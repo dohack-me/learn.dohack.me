@@ -1,12 +1,16 @@
 ---
 title: How to perform a Sigreturn ROP attack
 ---
+
 import {Aside, LinkCard} from "@astrojs/starlight/components";
 
 This guide shows you how to perform a Sigreturn ROP (SROP) attack.
 
 ## Identify available gadgets
-Check for gadgets using `ROPgadget --binary ./vuln | grep "<register>"`.
+Check for gadgets with this command:
+```shell
+ROPgadget --binary ./<program> | grep "<register>"
+```
 
 If there are no easy-to-use `$rax` or `syscall` gadgets, SROP attacks may not be the correct attack to use.
 
@@ -14,13 +18,15 @@ If there are no easy-to-use `$rax` or `syscall` gadgets, SROP attacks may not be
 
 Refer to the associated guide to find or add a `/bin/sh` string to the program.
 
-<LinkCard title="How to add BINSH for ROP attacks" href="/pwn/guides/binsh/" description="Guide to find or add a `/bin/sh` string to a program during execution"/>
+<LinkCard title="How to add BINSH for ROP attacks" href="/pwn/guides/binsh/"
+          description="Guide to find or add a `/bin/sh` string to a program during execution"/>
 
 ## Find offset to return address
 
 Find the offset from your buffer to the return address.
 
-<LinkCard title="Finding offsets to return addresses" href="/pwn/guides/cyclic/" description="Guide to finding offset from a buffer to the return address"/>
+<LinkCard title="Finding offsets to return addresses" href="/pwn/guides/cyclic/"
+          description="Guide to finding offset from a buffer to the return address"/>
 
 ## Build payload
 You will need to do set `$rax` to `15`/`0xf` in your payload, then call a `syscall` gadget.
