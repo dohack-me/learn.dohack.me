@@ -1,0 +1,59 @@
+---
+title: How to add BINSH for ROP attacks
+---
+import {Image} from "astro:assets";
+import vmmap from "/src/assets/pwn/guides/rop/vmmap.png"
+
+This guide shows you how to find or add a `/bin/sh` string to a program during execution.
+
+This is useful to perform ROP attacks.
+
+## Locating `/bin/sh`
+It is possible that `/bin/sh` may already exist as a string in your program. Run `strings -tx ./vuln | grep "/bin/sh"` to check.
+
+If such string exists, it will output the address of the string:
+```
+XXXXXXXX /bin/sh
+```
+
+You can then simply use this address for your payload.
+
+If no strings exist, continue reading to add your own string.
+
+## Locate empty space for `/bin/sh`
+If there is no `/bin/sh` string, you will need to add the string yourself to empty address.
+
+To begin, first find some empty space within the program's address space.
+1. Open the program with pwndbg.
+2. Ensure that the program pauses as it runs, either through a user input or breakpoint you added.
+3. Run the program and `CTRL+C` when you are at the pause
+4. Run `vmmap`. Identify the address where the `DATA` "region" starts.
+5. View the data region with `x/<number of bytes>x <address>` to view some amount of bytes from the target address onwards, inclusive of the target address.
+6. Note down the address you want to add `/bin/sh` into. It should be empty `0x00000000` such that you would not interfere with the program.
+
+<Image src={vmmap} alt={"Screenshot showing the output of 'vmmap' and viewing the data region of a program"}/>
+
+## Identify "mov" gadget
+Afterward, identify a `mov` gadget that you will use.
+
+For example, the gadget `mov qword ptr [rax], rdi; ret` would move the value from `$rdi` to the address at `$rax`.
+
+Note down the address of the `mov` gadget you will use.
+
+## Build payload
+You will need to do the following in your payload in no particular order:
+1. Set the register that should hold the value to the value
+    - Ensure that the `/bin/sh` string contains the null byte like a string should have.
+2. Set the register that should hold the address to the address
+
+Finally, call the `mov` gadget via the address you noted down. Here is an example payload:
+```python
+payload = b"A"*64
+payload += p64(rop.rax.address)
+payload += p64(b"/bin/sh\x00")
+payload += p64(rop.rdi.address)
+payload += p64(BINSH)
+payload += p64(MOV_GADGET) # mov qword ptr [rax], rdi; ret
+```
+
+You can now use the address within your payload for ROP attacks.
