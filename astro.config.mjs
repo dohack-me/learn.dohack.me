@@ -4,12 +4,12 @@ import starlight from "@astrojs/starlight"
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://phosphor.diffusehyperion.com',
+	site: 'https://learn.dohack.me',
 	integrations: [
 		starlight({
-			title: "Phosphor",
+			title: "learn.dohack.me",
 			social: {
-				github: "https://github.com/diffusehyperion/phosphor",
+				github: "https://github.com/dohack-me/learn.dohack.me",
 			},
 			sidebar: [
 				{
