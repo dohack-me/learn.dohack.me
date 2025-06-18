@@ -49,6 +49,34 @@ export default defineConfig({
 						},
 					],
 				},
+				{
+					label: "Web Exploitation",
+					items: [
+						{
+							label: "Introduction",
+							slug: "pwn/introduction"
+
+						},
+						{
+							label: "Tutorial",
+							autogenerate: {
+								directory: "web/tutorials"
+							}
+						},
+						{
+							label: "Guides",
+							autogenerate: {
+								directory: "web/guides"
+							}
+						},
+						{
+							label: "Explanations",
+							autogenerate: {
+								directory: "web/explanations"
+							}
+						},
+					],
+				},
 			],
 		}),
 	],

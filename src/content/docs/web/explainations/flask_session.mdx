@@ -1,0 +1,52 @@
+---
+title: Flask Sessions
+---
+import {LinkCard} from "@astrojs/starlight/components"
+
+In Flask, developers can store key-value pairs in a dictionary object from the Flask library called `session`.
+This `session` dictionary will be persisted between user sessions.
+
+In the background, these values are signed and stored as a cookie called `session`.
+In a way, this is Flask's version of JWTs.
+
+<LinkCard title="JSON Web Tokens (JWT)" href="/web/explanations/jwt/"/>
+
+The session cookie is signed using `app.secretkey`.
+
+## Example
+Consider the following code:
+```python
+from flask import session
+
+@app.route('/')
+def index():
+    if "username" in session:
+        return f'Welcome back, {session["username"]}'
+    session["username"] = "guest"
+    return f"Hello there, {session["username"]}"
+```
+When a user visits the website for the first time, they will receive a new cookie called `session`.
+The session cookie contains a signed and serialized version of a JSON containing the session data.
+In this case, the JSON might look like this:
+```json
+{
+  "username": "guest"
+}
+```
+
+Finally, the website will return:
+```
+Hello there, guest
+```
+
+Once the user revisits the website, the `session` dictionary will contain the `"username"` key-value pair stored earlier.
+The website will then return:
+```
+Welcome back, guest
+```
+
+## Bypass
+As mentioned earlier, the `session` cookie is signed using `app.secretkey`.
+If the app's secret key is leaked, you can recreate your own session cookie with your own data.
+
+TODO: add flask-unsign stuff
