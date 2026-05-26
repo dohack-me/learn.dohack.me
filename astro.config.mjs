@@ -8,9 +8,13 @@ export default defineConfig({
 	integrations: [
 		starlight({
 			title: "learn.dohack.me",
-			social: {
-				github: "https://github.com/dohack-me/learn.dohack.me",
-			},
+			social: [
+				{
+					icon: "github",
+					label: "GitHub",
+					href: "https://github.com/dohack-me/learn.dohack.me"
+				}
+			],
 			sidebar: [
 				{
 					label: "Introduction",
@@ -27,25 +31,36 @@ export default defineConfig({
 						{
 							label: "Tooling",
 							slug: "pwn/tooling"
-
 						},
 						{
 							label: "Tutorial",
-							autogenerate: {
-								directory: "pwn/tutorials"
-							}
+							items: [
+								{
+									autogenerate: {
+										directory: "pwn/tutorials"
+									}
+								}
+							]
 						},
 						{
 							label: "Guides",
-							autogenerate: {
-								directory: "pwn/guides"
-							}
+							items: [
+								{
+									autogenerate: {
+										directory: "pwn/guides"
+									}
+								}
+							]
 						},
 						{
 							label: "Explanations",
-							autogenerate: {
-								directory: "pwn/explanations"
-							}
+							items: [
+								{
+									autogenerate: {
+										directory: "pwn/explanations"
+									}
+								}
+							]
 						},
 					],
 				},
@@ -54,26 +69,38 @@ export default defineConfig({
 					items: [
 						{
 							label: "Introduction",
-							slug: "pwn/introduction"
+							slug: "web/introduction"
 
 						},
 						{
 							label: "Tutorial",
-							autogenerate: {
-								directory: "web/tutorials"
-							}
+							items: [
+								{
+									autogenerate: {
+										directory: "web/tutorials"
+									}
+								}
+							]
 						},
 						{
 							label: "Guides",
-							autogenerate: {
-								directory: "web/guides"
-							}
+							items: [
+								{
+									autogenerate: {
+										directory: "web/guides"
+									}
+								}
+							]
 						},
 						{
 							label: "Explanations",
-							autogenerate: {
-								directory: "web/explanations"
-							}
+							items: [
+								{
+									autogenerate: {
+										directory: "web/explanations"
+									}
+								}
+							]
 						},
 					],
 				},
