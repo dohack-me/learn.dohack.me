@@ -1,0 +1,33 @@
+---
+title: Position Independent Executable
+---
+Position Independent Executable (PIE) is a defense that causes every function's address to be offset by a random constant number when running.
+This random constant number is called the base offset.
+
+Tools like pwntools will only be able to get a function's base address, and not its real final address that includes the offset.
+
+This means that until you find the base offset, you won't be able to meaningfully use any function's address you get.
+
+## Example
+
+If the `win()` function's base address is 0x40000000 and the base address is 0x10000000, the `win()` function will end up in `0x50000000` during runtime.
+
+Running `exe.sym["win"]` would only return `0x40000000`.
+
+## Bypass
+To bypass this, you will need to find the base offset during runtime. Afterward, you can set the base address with `exe.address = 0xabcdabcd`
+
+One way to find the base address is to leak the real address of any function.
+Afterward, the base offset must be `leaked real address - exe.sym["leaked"]`.
+
+After finding the base offset, you can tell this to pwntool with `exe.address = (base offset)`.
+In the future, pwntools will correctly factor in the base offset in future operations.
+
+Do note that previous objects and address returned by pwntools will not change upon the base address being set.
+
+```python
+rop = ROP(exe)
+payload = exe.sym["win"]
+exe.address = ...
+# "payload" will still have the incorrect address!
+```

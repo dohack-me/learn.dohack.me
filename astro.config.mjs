@@ -17,8 +17,14 @@ export default defineConfig({
 			],
 			sidebar: [
 				{
-					label: "Introduction",
-					slug: "introduction"
+					label: "Start Here",
+					items: [
+						{
+							autogenerate: {
+								directory: "introduction"
+							}
+						}
+					]
 				},
 				{
 					label: "Binary Exploitation",
